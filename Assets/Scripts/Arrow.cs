@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    // arrwos stick to wall 
+    public LayerMask Ground;
+    public LayerMask Wall;
+
+    private void Start()
     {
-       
+        Debug.Log(ShootArrow.BounceAmount);
         
     }
+
+
 
 }
