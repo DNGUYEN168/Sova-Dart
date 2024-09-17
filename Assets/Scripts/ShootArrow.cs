@@ -7,6 +7,7 @@ public class ShootArrow : MonoBehaviour
 
     [Header("Arrow Information")]
     public static int BounceAmount;
+    public int chargeRate = 1;
     int chargeAmount = 0;
 
 
@@ -23,7 +24,7 @@ public class ShootArrow : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             if (0 <= chargeAmount && chargeAmount < 100)
-            { chargeAmount += 2; }
+            { chargeAmount += chargeRate; }
         }
 
         // Check if the left mouse button was released
@@ -31,14 +32,14 @@ public class ShootArrow : MonoBehaviour
         {
             SpawnArrow();
             chargeAmount = 0;
+
+
         }
         if (Input.GetMouseButtonDown(1)) // right mouse button change how many bounces 
         {
-            if (0 <= BounceAmount && BounceAmount < 2)
-            {
-                BounceAmount++;
-            }
-            else { BounceAmount = 0; }
+            if (0 <= BounceAmount && BounceAmount < 2) {BounceAmount++; }
+            else {BounceAmount = 0; }
+            Debug.Log(BounceAmount);
         }
 
     }
@@ -51,7 +52,7 @@ public class ShootArrow : MonoBehaviour
 
         Quaternion arrowRotation = PlayerPOV.transform.rotation * Quaternion.Euler(customRotationAngles);
 
-        shootfrom.z = shootfrom.z + 0.2f;
+        shootfrom.z = shootfrom.z + 0.5f;
 
         GameObject Dart = Instantiate(SonarDart, shootfrom, arrowRotation);
 
