@@ -5,6 +5,16 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    [Header("Movement")]
+    public float moveSpeed;
+
+    public Transform orientation;
+
+    float horizontalInput;
+    float verticalInput;
+
+
     void Start()
     {
         
