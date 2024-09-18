@@ -10,6 +10,8 @@ public class Arrow : MonoBehaviour
 
     Rigidbody rb;
 
+
+
     private void Start()
     {
         Debug.Log(ShootArrow.BounceAmount);
@@ -24,6 +26,16 @@ public class Arrow : MonoBehaviour
 
         StopArrow();
         return;
+    }
+
+    private void Update()
+    {
+        if (rb.velocity.sqrMagnitude < 0.001f && rb.angularVelocity.sqrMagnitude < 0.001f) // only if our arow is not moving we do the ray casting 
+        {
+            
+            PerformRaycast();
+          
+        }
     }
 
     private void StopArrow()
@@ -43,6 +55,16 @@ public class Arrow : MonoBehaviour
 
     }
 
+    private void PerformRaycast()
+    {
+
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out RaycastHit hitInfo, 20f))
+        {
+            Debug.Log("hittttt");
+
+        }
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) *20f, Color.red);
+    }
 
 
 }

@@ -152,3 +152,9 @@ MonoBehaviour:
   Wall:
     serializedVersion: 2
     m_Bits: 128
+  rayCount: 72
+  expansionSpeed: 5
+  maxRadius: 20
+  hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
