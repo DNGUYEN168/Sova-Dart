@@ -30,7 +30,7 @@ public class Arrow : MonoBehaviour
     {
         // we check if the arrow has hit a wall 
         bool isTouchingGround = Physics.CheckSphere(transform.position, 0.5f, Ground);
-        bool isTouchingWall = Physics.CheckSphere(transform.position, 0.5f, Wall);
+        bool isTouchingWall = Physics.CheckSphere(transform.position, 0.4f, Wall);
 
         if (ShootArrow.BounceAmount == 0 && (isTouchingGround || isTouchingWall)) // no bounces and touches wall/floor
         {

@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7f0afb1ba1183488abf21d020533e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chargeRate: 2
   SonarDart: {fileID: 207976561381065596, guid: 3d902db81b1742b44bd7511ee33bb834, type: 3}
   PlayerPOV: {fileID: 963194227}
 --- !u!1 &659439645
@@ -368,7 +369,7 @@ GameObject:
   - component: {fileID: 1897312833}
   - component: {fileID: 1897312832}
   - component: {fileID: 1897312831}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,6 +513,22 @@ PrefabInstance:
     - target: {fileID: 2914875500286591951, guid: 766780e5eecc3254783fac036516f5f7, type: 3}
       propertyPath: m_Name
       value: Sova
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914875500286591951, guid: 766780e5eecc3254783fac036516f5f7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429166530565600366, guid: 766780e5eecc3254783fac036516f5f7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667916466164110087, guid: 766780e5eecc3254783fac036516f5f7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9209543168788850401, guid: 766780e5eecc3254783fac036516f5f7, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
