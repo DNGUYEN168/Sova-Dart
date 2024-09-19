@@ -10,6 +10,9 @@ public class Arrow : MonoBehaviour
     public LayerMask Player;
     Rigidbody rb;
 
+    public GameObject TerrainScannerPrefab;
+    public float duration;
+    public float size;
 
 
     private void Start()
@@ -28,9 +31,10 @@ public class Arrow : MonoBehaviour
     {
         if (rb.velocity.sqrMagnitude < 0.001f && rb.angularVelocity.sqrMagnitude < 0.001f) // only if our arow is not moving we do the ray casting 
         {
-            
-            //PerformRaycast();
-          
+
+            //TriggerEffectTwice();
+
+
         }
     }
 
@@ -44,8 +48,11 @@ public class Arrow : MonoBehaviour
         if (ShootArrow.BounceAmount == 0 && (isTouchingGround || isTouchingWall || isTouchingPlayer)) // no bounces and touches wall/floor
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
-            float Lifetime = 3.0f;
-            Destroy(gameObject, Lifetime);
+            float Lifetime = 2.5f;
+            
+            StartCoroutine(TriggerEffectTwice(Lifetime));
+   
+
         }
         else if (isTouchingGround || isTouchingWall || isTouchingPlayer)
         {
@@ -63,6 +70,37 @@ public class Arrow : MonoBehaviour
 
         }
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) *20f, Color.red);
+    }
+
+    void SpawnTerrainScanner()
+    {
+        GameObject terrainScanner = Instantiate(TerrainScannerPrefab, transform.position, Quaternion.identity) as GameObject;
+        ParticleSystem terrainScannerPS = terrainScanner.transform.GetChild(0).GetComponent<ParticleSystem>();
+
+        if (terrainScannerPS != null)
+        {
+            var main = terrainScannerPS.main;
+            main.startLifetime = duration;
+            main.startSize = size;
+        }
+        else
+        {
+            Debug.Log("dont got so particles here son");
+        }
+        Destroy(terrainScanner, duration + 1);
+    }
+
+    IEnumerator TriggerEffectTwice(float Delay)
+    {
+        // Trigger the effect the first time
+        SpawnTerrainScanner();
+
+        // Wait for the delay
+        yield return new WaitForSeconds(Delay);
+
+        // Trigger the effect the second time
+        SpawnTerrainScanner();
+        Destroy(gameObject);
     }
 
 

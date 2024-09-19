@@ -155,3 +155,6 @@ MonoBehaviour:
   Player:
     serializedVersion: 2
     m_Bits: 256
+  TerrainScannerPrefab: {fileID: 960512073830039683, guid: 481d826107e54d94582f4d7315adf2f4, type: 3}
+  duration: 5
+  size: 200
