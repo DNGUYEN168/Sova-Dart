@@ -39,7 +39,7 @@ public class ShootArrow : MonoBehaviour
         {
             if (0 <= BounceAmount && BounceAmount < 2) {BounceAmount++; }
             else {BounceAmount = 0; }
-            Debug.Log(BounceAmount);
+            Debug.Log("charged to: " + BounceAmount);
         }
 
     }
@@ -49,10 +49,10 @@ public class ShootArrow : MonoBehaviour
     {
         Vector3 shootfrom = transform.position;
 
-
         Quaternion arrowRotation = PlayerPOV.transform.rotation * Quaternion.Euler(customRotationAngles);
 
-        shootfrom.z = shootfrom.z + 0.5f;
+        shootfrom.z = shootfrom.z + 0.7f;
+        
 
         GameObject Dart = Instantiate(SonarDart, shootfrom, arrowRotation);
 
