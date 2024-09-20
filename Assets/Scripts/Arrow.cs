@@ -48,7 +48,7 @@ public class Arrow : MonoBehaviour
         if (ShootArrow.BounceAmount == 0 && (isTouchingGround || isTouchingWall || isTouchingPlayer)) // no bounces and touches wall/floor
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
-            float Lifetime = 2.5f;
+            float Lifetime = 2.0f;
             
             StartCoroutine(TriggerEffectTwice(Lifetime));
    
@@ -92,6 +92,7 @@ public class Arrow : MonoBehaviour
 
     IEnumerator TriggerEffectTwice(float Delay)
     {
+        yield return new WaitForSeconds(.2f);
         // Trigger the effect the first time
         SpawnTerrainScanner();
 
