@@ -47,11 +47,11 @@ public class ShootArrow : MonoBehaviour
     // on leftmouse release spawn the arrow with speed based on the chargeAmount 
     public void SpawnArrow()
     {
-        Vector3 shootfrom = PlayerPOV.transform.position;
+        Vector3 shootfrom = PlayerPOV.transform.position + PlayerPOV.transform.forward;
 
         Quaternion arrowRotation = PlayerPOV.transform.rotation * Quaternion.Euler(customRotationAngles);
 
-        shootfrom.z = shootfrom.z + 0.7f;
+       
         
 
         GameObject Dart = Instantiate(SonarDart, shootfrom, arrowRotation);
