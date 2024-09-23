@@ -24,8 +24,8 @@ public class Arrow : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //spawn a single occurance of the sphere object
-        if (SingleCall == 0) { StopArrow(); SingleCall++; return; }
-        return;
+        if (SingleCall == 0) { StopArrow(); SingleCall++; }
+        SingleCall = 0; //reset for next collison
 
 
     }

@@ -118,6 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626cbc18dc4bc2a44b33f07ca188c81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleSpeed: 35
-  highlightMat: {fileID: 2100000, guid: db28c27ced7892446b8c9bc2c9fa2581, type: 2}
+  scaleSpeed: 40
+  highlightMat: {fileID: 2100000, guid: 053d85958dbecf6459d8a8758093da6c, type: 2}
   oldMat: {fileID: 2100000, guid: 84bf5d91ce4932f4c98e2e2c503c2554, type: 2}

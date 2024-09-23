@@ -43,7 +43,7 @@ public class RayTraceScanner : MonoBehaviour
         // transform.position -> position, if raycast is not obstructed, do something 
 
         RaycastHit hit;
-        Debug.DrawRay(transform.position, castAngle * transform.localScale.z, Color.red);
+        //Debug.DrawRay(transform.position, castAngle * transform.localScale.z, Color.red);
         return (Physics.Raycast(transform.position, castAngle, out hit, transform.localScale.z) && hit.collider.tag == desiredLayer); // only if raycast hits enenmy tag
        
         //
