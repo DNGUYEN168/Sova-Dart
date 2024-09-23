@@ -58,7 +58,7 @@ public class Arrow : MonoBehaviour
     {
         
         GameObject terrainScanner = Instantiate(TerrainScannerPrefab, transform.position, Quaternion.identity) as GameObject;
-        Destroy(terrainScanner, duration);
+        
     }
 
     IEnumerator TriggerEffectTwice(float Delay)

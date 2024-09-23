@@ -10,15 +10,19 @@ public class RayTraceScanner : MonoBehaviour
     public float scaleSpeed = 2f; // Speed of scaling
     private string desiredLayer = "Enemy";
 
+
     public Material highlightMat;
     public Material oldMat;
 
+    public float ScanLimit = 30f;
+
     private void Update()
     {
+        
         float ScaleTime = Time.deltaTime * scaleSpeed;
-        //transform.localScale = Vector3.Lerp(transform.localScale, targetScale, scaleSpeed * Time.deltaTime);
         Vector3 newScale = new Vector3(transform.localScale.x + ScaleTime, transform.localScale.y + ScaleTime, transform.localScale.z + ScaleTime);
         transform.localScale = newScale;
+        if (transform.localScale.x > ScanLimit) { Destroy(gameObject); }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,9 +31,9 @@ public class RayTraceScanner : MonoBehaviour
         Renderer objectRenderer = other.gameObject.GetComponent<Renderer>();
         if (other.gameObject.layer == LayerMask.NameToLayer(desiredLayer)) // will always hit because it passes through walls 
         {
-            if (PerformRaycast(other.transform.position))
+            if (PerformRaycast(other.transform.position)) //bool if hit only enemy
             {
-                StartCoroutine(ChangeColorCoroutine(objectRenderer));
+                StartCoroutine(ChangeColorCoroutine(objectRenderer)); // do the highlights
             }
         }
         
