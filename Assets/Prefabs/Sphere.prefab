@@ -121,4 +121,4 @@ MonoBehaviour:
   scaleSpeed: 40
   highlightMat: {fileID: 2100000, guid: 053d85958dbecf6459d8a8758093da6c, type: 2}
   oldMat: {fileID: 2100000, guid: 84bf5d91ce4932f4c98e2e2c503c2554, type: 2}
-  ScanLimit: 80
+  ScanLimit: 100

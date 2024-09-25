@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShootArrow : MonoBehaviour
 {
 
     [Header("Arrow Information")]
     public static int BounceAmount;
-    public int chargeRate = 1;
-    int chargeAmount = 0;
+    public Image chargeBar;
+    public Image Bounce1;
+    public Image Bounce2;
 
+    public float chargeRate = 1.0f;
+    float chargeAmount = 0;
 
+    float MaxChargeAmount = 100.0f;
 
     public GameObject SonarDart;
     public Camera PlayerPOV;
@@ -23,15 +28,17 @@ public class ShootArrow : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            if (0 <= chargeAmount && chargeAmount < 100)
-            { chargeAmount += chargeRate; }
+            if (0 <= chargeAmount && chargeAmount < MaxChargeAmount)
+            { chargeAmount += chargeRate; UpdateChargeBar(chargeAmount); }
         }
 
         // Check if the left mouse button was released
         if (Input.GetMouseButtonUp(0))
         {
             SpawnArrow();
-            chargeAmount = 0;
+            chargeAmount = 0.0f; // reset the charge 
+            UpdateChargeBar(chargeAmount);
+            Bounce1.color = Color.white; Bounce2.color = Color.white; // reset the bouncers
 
 
         }
@@ -39,20 +46,29 @@ public class ShootArrow : MonoBehaviour
         {
             if (0 <= BounceAmount && BounceAmount < 2) {BounceAmount++; }
             else {BounceAmount = 0; }
-            Debug.Log("charged to: " + BounceAmount);
+            ChangeBounceIcons();
+
         }
+        
 
     }
 
+    public void ChangeBounceIcons()
+    {
+        if (BounceAmount == 0) { Bounce1.color = Color.white; Bounce2.color = Color.white; }
+        else if (BounceAmount == 1) { Bounce1.color = Color.blue; }
+        else if (BounceAmount == 2) { Bounce2.color = Color.blue; }
+    }
+    public void UpdateChargeBar(float chargeAmount)
+    {
+        chargeBar.fillAmount =(float)( chargeAmount / MaxChargeAmount);
+    }
     // on leftmouse release spawn the arrow with speed based on the chargeAmount 
     public void SpawnArrow()
     {
         Vector3 shootfrom = PlayerPOV.transform.position + PlayerPOV.transform.forward;
 
         Quaternion arrowRotation = PlayerPOV.transform.rotation * Quaternion.Euler(customRotationAngles);
-
-       
-        
 
         GameObject Dart = Instantiate(SonarDart, shootfrom, arrowRotation);
 
