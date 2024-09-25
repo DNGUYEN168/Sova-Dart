@@ -27,13 +27,12 @@ public class RayTraceScanner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         Renderer objectRenderer = other.gameObject.GetComponent<Renderer>();
         if (other.gameObject.layer == LayerMask.NameToLayer(desiredLayer)) // will always hit because it passes through walls 
         {
             if (PerformRaycast(other.transform.position)) //bool if hit only enemy
             {
-                StartCoroutine(ChangeColorCoroutine(objectRenderer)); // do the highlights
+                CoroutineManager.Instance.StartCoroutine(ChangeColorCoroutine(objectRenderer));
             }
         }
         
@@ -66,7 +65,7 @@ public class RayTraceScanner : MonoBehaviour
         objectRenderer.material = highlightMat;
         // Wait for the specified duration
         yield return new WaitForSeconds(0.5f);
-
+        
         // Restore the original color
         objectRenderer.material = oldMat;
     }
