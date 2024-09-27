@@ -8,6 +8,10 @@ public class ShootArrow : MonoBehaviour
 
     [Header("Arrow Information")]
     public static int BounceAmount;
+
+
+
+    public GameObject bowUI;
     public Image chargeBar;
     public Image Bounce1;
     public Image Bounce2;
@@ -23,17 +27,19 @@ public class ShootArrow : MonoBehaviour
 
     private Vector3 customRotationAngles = new Vector3(90, 0, 0);
 
+
+    private int weaponRotate = 0;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && weaponRotate == 4)
         {
             if (0 <= chargeAmount && chargeAmount < MaxChargeAmount)
             { chargeAmount += chargeRate; UpdateChargeBar(chargeAmount); }
         }
 
         // Check if the left mouse button was released
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && weaponRotate == 4)
         {
             SpawnArrow();
             chargeAmount = 0.0f; // reset the charge 
@@ -42,14 +48,27 @@ public class ShootArrow : MonoBehaviour
 
 
         }
-        if (Input.GetMouseButtonDown(1)) // right mouse button change how many bounces 
+        if (Input.GetMouseButtonDown(1) && weaponRotate == 4) // right mouse button change how many bounces 
         {
             if (0 <= BounceAmount && BounceAmount < 2) {BounceAmount++; }
             else {BounceAmount = 0; }
             ChangeBounceIcons();
 
         }
-        
+        if (Input.GetKeyDown(KeyCode.Alpha1)) // right mouse button change how many bounces 
+        {
+            // add switch to this image 
+            weaponRotate = 1;
+            bowUI.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.E)) // right mouse button change how many bounces 
+        {
+            // E = 4
+            // add switch to this image 
+            weaponRotate = 4;
+            bowUI.SetActive(true);
+
+        }
 
     }
 
